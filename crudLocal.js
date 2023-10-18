@@ -40,7 +40,7 @@ function insert(dados){
 
     //inserindo no localStorage
     localStorage.setItem("pessoas", JSON.stringify(pessoas))
-    return true;
+    list()
 
 }
 
@@ -55,9 +55,7 @@ function delet(){
 //CONTROLE DE EVENTOS
 const form = document.querySelector('form');
 form.addEventListener('submit', function(){
-    if(insert(form)){
-        alert("Cadastro efetuado com sucesso.")
-    }
+    insert(form)
 })
 
 list();
