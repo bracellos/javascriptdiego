@@ -1,8 +1,6 @@
-function list(){
-    let base = localStorage.getItem("pessoas");
-    let pessoas = JSON.parse(base);
-
-    console.log(pessoas);
+function list(){;
+    let pessoas = (localStorage.pessoas) ? 
+        JSON.parse(localStorage.pessoas) : [];
 
     let estrutura = '';
     for(pos in pessoas){
@@ -35,12 +33,10 @@ function insert(dados){
         telefone: telefonePessoa
     }
     
-    let pessoas = [];
-    let base = JSON.parse(localStorage.getItem("pessoas"));
+    let pessoas = (localStorage.pessoas) ? 
+        JSON.parse(localStorage.pessoas) : [];
 
     pessoas.push(pessoa)
-
-    console.log(base);
 
     //inserindo no localStorage
     localStorage.setItem("pessoas", JSON.stringify(pessoas))
