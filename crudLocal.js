@@ -10,8 +10,8 @@ function list(){;
             <td>${pessoas[pos].email}</td>
             <td>${pessoas[pos].telefone}</td>
             <td>
-                <a href="">Editar</a>
-                <a href="">Excluir</a>
+                <a href="" data-id="${pos}" class="editar">Editar</a>
+                <a href="" data-id="${pos}" class="deletar">Excluir</a>
             </td>
         </tr>
         `
@@ -48,14 +48,24 @@ function update(){
 
 }
 
-function delet(){
-
+function delet(id){
+    let pessoas = (localStorage.pessoas) ? 
+        JSON.parse(localStorage.pessoas) : [];
+    console.log(id)
+        /* pessoas.slice(id, 1)
+        list() */
 }
 
 //CONTROLE DE EVENTOS
 const form = document.querySelector('form');
 form.addEventListener('submit', function(){
     insert(form)
+})
+
+const deletar = document.querySelector('.deletar')
+deletar.addEventListener('click', function(){
+    let id = deletar.getAttribute('data-id')
+    delet(id)
 })
 
 list();
