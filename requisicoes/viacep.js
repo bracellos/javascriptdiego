@@ -12,11 +12,16 @@ cepField.addEventListener("keyup", function(){
             .then(dados => dados.json())
             .then(function(dados){
                 //preenchendo os dados nos campos
-                console.log(dados);
-                preencher("#logradouro", dados.logradouro)
-                preencher("#bairro", dados.bairro)
-                preencher("#cidade", dados.localidade)
-                preencher("#estado", dados.uf)
+                if(dados.erro){
+                    alert("CEP não encontrado")
+                    cepField.value = ""
+                }else{
+                    preencher("#logradouro", dados.logradouro)
+                    preencher("#bairro", dados.bairro)
+                    preencher("#cidade", dados.localidade)
+                    preencher("#estado", dados.uf)
+                    document.querySelector("#numero").focus()
+                }
             })
             .catch(new Error("Não foi possível consultar os dados"))
     }
