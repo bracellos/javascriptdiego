@@ -3,6 +3,8 @@ $(function() {
     //manipular um evento
     // on(evento, seletor, callback)
     $(document).on("click", ".meuLink", function(){
+        $('.meuLink').removeClass('ativo')
+        $(this).addClass('ativo')
         let caminho = $(this).attr('href')
         let id = $(this).attr('data-id', 200)
         console.log(id);
@@ -25,12 +27,46 @@ $(function() {
         return false;
     })
 
+    //aumentar caixinha
+    $(document).on('click', '.clicaBloco', function(){
+        //mudar a cor
+        $('.bloco').css({
+            'background-color' : 'black',
+            'border-radius' : '5px'
+        })
+
+        $('.bloco').show() //fadeOut //hide
+        
+        //aumentar caixa
+        let largura = $('.bloco').width()
+        $('.bloco').animate({
+            width: largura += 100
+        },1000)
+
+        return false;
+    })
+
     //funcao de carregamento das views
     let loadView = (page = 'home.html') => {
-        $('.container').load(`view/${page}`)
+        $('.container').load(`view/${page}`, function(){
+            $('.cpf').mask('000.000.000-00')
+        })
     }
 
     //CHAMAR LOADVIEW
     loadView()
+
+
+    //consumir api com jquery
+    $.ajax({
+        url : 'http://cafepradev.com.br:21020/messages/list',
+        contentType : 'json',
+        success : function(dados){
+            console.log(dados)
+        }
+    })
+
+
+    
 
 })
